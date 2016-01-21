@@ -66,6 +66,14 @@
                 )
             }
         })
+        myModule.directive('story', function(){
+            return {
+                scope: true,
+                replace: true,
+                template: '<div><h4>{{story.title}}</h4><p>{{story.description}}</p>'
+            }
+        })
+
     </script>
 </head>
 <body>
@@ -73,11 +81,9 @@
         <h1>{{main.title}}</h1>
         <div>
             <h2>Stories</h2>
-            <div ng-repeat="story in main.stories"
+            <story ng-repeat="story in main.stories"
                  ng-click="main.setCurrentStory(story)">
-                <h4>{{story.title}}</h4>
-                <p>{{story.description}}</p>
-            </div>
+            </story>
             <br/>
             <a ng-click="main.createStory()">
                 <span>"ddd"</span>
