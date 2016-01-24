@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Phones</title>
+</head>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular.js"></script>
+<script>
+    var myModule = angular.module('Phones', []);
+    myModule.controller('PhonesCtrl', function PhonesCtrl($scope){
+        $scope.phones = [
+            {name: 'Nexus S',
+            snippet: 'Fast just got faster with Nexus S.',
+            "age": 3},
+            {name: 'Motorola XOOM™ with Wi-Fi',
+            snippet: 'The Next, Next Generation tablet',
+            "age": 1},
+            {name: 'Motorola XOOM™',
+            snippet: 'The Next, Next Generation tablet',
+            "age": 2}
+        ];
+        $scope.orderProp = 'name';
+    })
+</script>
+<body ng-app="Phones">
+
+    <div ng-controller="PhonesCtrl">
+        Search: <input ng-model="query" />
+        Sort by: <select ng-model="orderProp">
+            <option value="name">Alphabetical</option>
+            <option value="age">Newest</option>
+        </select>
+        <ul>
+            <li ng-repeat="phone in phones | filter:query | orderBy:orderProp">{{phone.name}}
+                <p>{{phone.snippet}}</p>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
