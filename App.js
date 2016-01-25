@@ -79,5 +79,8 @@ $routeProvider.when('/login',{
         controller: 'LoginCtrl',
         controllerAs: 'login'
     })
+    .when('/',{
+        templateUrl: 'phone-list.html',
+    })
     .otherwise({redirectTo: '/'})
 })
