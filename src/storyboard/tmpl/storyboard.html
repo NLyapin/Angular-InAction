@@ -1,0 +1,23 @@
+<div ng-controller="StoryboardCtrl as storyboard">
+    <div class="list-area">
+        <div class="list-wrapper">
+            <ul class="list" ng-repeat="status in ::storyboard.statuses">
+                <h3 class="status">{{::status.name}}</h3>
+                <hr/>
+                <li class="story"
+                    ng-repeat="story in storyboard.stories | filter: {status:status.name}">
+                    <article>
+                        <div>
+                            <button type="button" class="close">×</button>
+                            <p class="title">{{story.title}}</p>
+                        </div>
+                        <div class="type-bar {{story.type}}"></div>
+                        <div>
+                            <p>{{story.description}}</p>
+                        </div>
+                    </article>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

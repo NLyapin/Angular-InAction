@@ -1,5 +1,8 @@
 var myModule = angular.module('Angello', [
-    "ngRoute"
+    "ngRoute",
+    'Angello.Common',
+    'Angello.Storyboard',
+    "Angello.Login"
 ])
 myModule.factory('AngelloHelper', function () {
     var buildIndex = function (source, property) {
@@ -75,12 +78,12 @@ myModule.directive('story', function () {
 
 myModule.config(function($routeProvider, $httpProvider, $provide){
 $routeProvider.when('/login',{
-        templateUrl: 'login.html',
+        templateUrl: 'src/login/tmpl/login.html',
         controller: 'LoginCtrl',
         controllerAs: 'login'
     })
     .when('/',{
-        templateUrl: 'phone-list.html',
+        templateUrl: 'src/storyboard/tmpl/storyboard.html'
     })
     .otherwise({redirectTo: '/'})
 })
