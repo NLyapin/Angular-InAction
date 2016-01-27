@@ -1,6 +1,13 @@
 angular.module('Angello.Storyboard').controller('StoryboardCtrl', function(){
 
     var storyboard = this;
+    storyboard.currentStory = null;
+    storyboard.editedStory = {};
+
+    storyboard.setCurrentStory = function(story){
+        storyboard.currentStory = story;
+        storyboard.editedStory = angular.copy(storyboard.currentStory);
+    }
 
     storyboard.stories = [
         {

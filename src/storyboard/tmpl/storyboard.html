@@ -5,7 +5,8 @@
                 <h3 class="status">{{::status.name}}</h3>
                 <hr/>
                 <li class="story"
-                    ng-repeat="story in storyboard.stories | filter: {status:status.name}">
+                    ng-repeat="story in storyboard.stories | filter: {status:status.name}"
+                    ng-click="storyboard.setCurrentStory(story)">
                     <article>
                         <div>
                             <button type="button" class="close">×</button>
@@ -19,5 +20,17 @@
                 </li>
             </ul>
         </div>
+    </div>
+    <div class="details">
+        <h3>Card Details</h3>
+        <form name="storyboard.detailsForm">
+            <div class="form-group">
+                <div class="controls">
+                    <label class="control-label" for="inputTitle">*Title</label>
+                    <input type="text" id="inputTitle" ng-model="storyboard.editedStory.title"
+                           ng-required="true" ng-minlength="3" ng-maxlength="30" class="form-control"
+                </div>
+            </div>
+        </form>
     </div>
 </div>
