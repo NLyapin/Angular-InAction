@@ -10,6 +10,7 @@ head.load(
     { file: '//cdn.firebase.com/libs/angularfire/1.1.3/angularfire.min.js' },
     { file: '//cdn.auth0.com/js/lock-7.min.js' },
     { file: '//cdn.auth0.com/w2/auth0-angular-4.js' },
+    { file: 'http://sugarjs.com/release/current/sugar.min.js' },
     { file: 'src/app/app.js' },
     { file: 'src/login/Login.js' },
     { file: 'src/login/controllers/LoginController.js' },

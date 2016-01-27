@@ -8,6 +8,40 @@ angular.module('Angello.Storyboard').controller('StoryboardCtrl', function(){
         storyboard.currentStory = story;
         storyboard.editedStory = angular.copy(storyboard.currentStory);
     }
+    storyboard.updateStory = function(){
+        var fields = ['title', 'description', 'criteria',
+            'status', 'type', 'reporter', 'assignee'];
+        fields.forEach(function(field){
+            storyboard.currentStory[field] = storyboard.editedStory[field];
+        })
+        storyboard.resetForm();
+    };
+    storyboard.resetForm = function(){
+        storyboard.currentStory = null;
+        storyboard.editedStory = {};
+
+        storyboard.detailsForm.$setPristine();
+        storyboard.detailsForm.$setUntouched();
+    };
+
+    function ID() {
+      return '_'+Math.random().toString(36).substr(2,9);
+    };
+
+    storyboard.createStory = function(){
+        var newStory = angular.copy(storyboard.editedStory);
+        newStory.id = ID();
+
+        storyboard.stories.push(newStory);
+        storyboard.resetForm();
+    };
+
+    storyboard.deleteStory = function(storyId) {
+        storyboard.stories.remove(function(story){
+            return story.id == storyId;
+        });
+        storyboard.resetForm();
+    }
 
     storyboard.stories = [
         {
