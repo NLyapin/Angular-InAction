@@ -1,5 +1,5 @@
 // Karma configuration
-// Generated on Wed Jan 27 2016 19:42:24 GMT+0300 (RTZ 2 (зима))
+// Generated on Thu Jan 28 2016 12:02:41 GMT+0300 (RTZ 2 (зима))
 
 module.exports = function(config) {
   config.set({
@@ -15,6 +15,17 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+        'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.0/angular.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.0/angular-messages.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.0/angular-route.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.0/angular-animate.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.0/angular-mocks.js',
+        'https://cdn.firebase.com/libs/angularfire/1.1.3/angularfire.min.js',
+        'https://cdn.auth0.com/js/lock-7.min.js',
+        'https://cdn.auth0.com/w2/auth0-angular-4.js',
+        'http://sugarjs.com/release/current/sugar.min.js',
+        'tests/**/*.js',
+        'src/**/*.js'
     ],
 
 
@@ -49,7 +60,7 @@ module.exports = function(config) {
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: true,
+    autoWatch: false,
 
 
     // start these browsers
