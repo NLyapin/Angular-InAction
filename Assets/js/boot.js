@@ -12,10 +12,13 @@ head.load(
     { file: '//cdn.auth0.com/w2/auth0-angular-4.js' },
     { file: 'http://sugarjs.com/release/current/sugar.min.js' },
     { file: 'src/app/app.js' },
+    { file: 'src/app/services/EndpointConfigService.js' },
+    { file: 'src/app/services/UtilService.js' },
+    { file: 'src/app/services/LoadingService.js' },
     { file: 'src/app/models/StoriesModel.js' },
     { file: 'src/login/Login.js' },
     { file: 'src/login/controllers/LoginController.js' },
     { file: 'src/storyboard/Storyboard.js' },
     { file: 'src/storyboard/controllers/StoryboardController.js' },
-    { file: 'Angello.js' }
+    { file: 'src/Angello.js' }
 );

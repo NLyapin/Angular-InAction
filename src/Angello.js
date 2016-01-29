@@ -16,6 +16,19 @@ myModule.factory('AngelloHelper', function () {
         buildIndex: buildIndex
     }
 });
+myModule.factory('loadingInterceptor', function(LoadingService){
+    var loadingInterceptor = {
+        request: function(config){
+            LoadingService.setLoading(true);
+            return config;
+        },
+        response: function(response){
+            LoadingService.setLoading(false);
+            return response;
+        }
+    };
+    return loadingInterceptor;
+});
 myModule.factory('AngelloModel', function () {
 });
 myModule.factory('AngelloCtrl', function () {
@@ -78,15 +91,17 @@ myModule.directive('story', function () {
 
 
 myModule.config(function($routeProvider, $httpProvider, $provide){
-$routeProvider.when('/login',{
-        templateUrl: 'src/login/tmpl/login.html',
-        controller: 'LoginCtrl',
-        controllerAs: 'login'
-    })
-    .when('/',{
-        templateUrl: 'src/storyboard/tmpl/storyboard.html'
-    })
-    .otherwise({redirectTo: '/'})
+
+    $httpProvider.interceptors.push('loadingInterceptor');
+    $routeProvider.when('/login',{
+            templateUrl: 'src/login/tmpl/login.html',
+            controller: 'LoginCtrl',
+            controllerAs: 'login'
+        })
+        .when('/',{
+            templateUrl: 'src/storyboard/tmpl/storyboard.html'
+        })
+        .otherwise({redirectTo: '/'})
 });
 
 myModule.value('STORY_TYPES', [

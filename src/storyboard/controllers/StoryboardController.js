@@ -1,4 +1,4 @@
-angular.module('Angello.Storyboard').controller('StoryboardCtrl', function(STORY_TYPES){
+angular.module('Angello.Storyboard').controller('StoryboardCtrl', function(StoriesModel, STORY_TYPES){
     var storyboard = this;
     storyboard.currentStory = null;
     storyboard.editedStory = {};
@@ -36,12 +36,15 @@ angular.module('Angello.Storyboard').controller('StoryboardCtrl', function(STORY
         storyboard.resetForm();
     };
 
-    //storyboard.getStories = function () {
-    //    StoriesModel.all()
-    //        .then(function (result){
-    //           console.log(result.data);
-    //        });
-    //};
+    storyboard.getStories = function () {
+        StoriesModel.all()
+            .then(function (result) {
+                storyboard.stories = (result !== 'null') ? result : {};
+                //console.debug('RESULT', result);
+            }, function (reason) {
+                condole.log('REASON', reason);
+            });
+    };
 
     storyboard.deleteStory = function(storyId) {
         storyboard.stories.remove(function(story){
@@ -50,7 +53,7 @@ angular.module('Angello.Storyboard').controller('StoryboardCtrl', function(STORY
         storyboard.resetForm();
     }
 
-    storyboard.stories = [
+    /*storyboard.stories = getStories();/*[
         {
             "assignee" : "1",
             "criteria": "It tests!",
@@ -71,7 +74,7 @@ angular.module('Angello.Storyboard').controller('StoryboardCtrl', function(STORY
             "title" : "Second Story",
             "type" : "Enhancement"
         }
-    ];
+    ];*/
     storyboard.statuses = [
         {name: 'To Do'},
         {name: 'In Progress'},
@@ -79,5 +82,7 @@ angular.module('Angello.Storyboard').controller('StoryboardCtrl', function(STORY
         {name: 'QA Review'},
         {name: 'Verified'}
     ];
+
+    storyboard.getStories();
 })
 

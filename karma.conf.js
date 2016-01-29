@@ -24,6 +24,7 @@ module.exports = function(config) {
         'https://cdn.auth0.com/js/lock-7.min.js',
         'https://cdn.auth0.com/w2/auth0-angular-4.js',
         'http://sugarjs.com/release/current/sugar.min.js',
+        'src/Angello.js',
         'tests/**/*.js',
         'src/**/*.js'
     ],
@@ -70,7 +71,7 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
+    singleRun: true,
 
     // Concurrency level
     // how many browser should be started simultaneous
