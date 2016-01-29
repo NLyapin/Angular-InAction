@@ -12,6 +12,7 @@ head.load(
     { file: '//cdn.auth0.com/w2/auth0-angular-4.js' },
     { file: 'http://sugarjs.com/release/current/sugar.min.js' },
     { file: 'src/app/app.js' },
+    { file: 'src/app/models/StoriesModel.js' },
     { file: 'src/login/Login.js' },
     { file: 'src/login/controllers/LoginController.js' },
     { file: 'src/storyboard/Storyboard.js' },

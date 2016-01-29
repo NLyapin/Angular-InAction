@@ -1,8 +1,8 @@
-angular.module('Angello.Storyboard').controller('StoryboardCtrl', function(){
-
+angular.module('Angello.Storyboard').controller('StoryboardCtrl', function(STORY_TYPES){
     var storyboard = this;
     storyboard.currentStory = null;
     storyboard.editedStory = {};
+    storyboard.types = STORY_TYPES;
 
     storyboard.setCurrentStory = function(story){
         storyboard.currentStory = story;
@@ -35,6 +35,13 @@ angular.module('Angello.Storyboard').controller('StoryboardCtrl', function(){
         storyboard.stories.push(newStory);
         storyboard.resetForm();
     };
+
+    //storyboard.getStories = function () {
+    //    StoriesModel.all()
+    //        .then(function (result){
+    //           console.log(result.data);
+    //        });
+    //};
 
     storyboard.deleteStory = function(storyId) {
         storyboard.stories.remove(function(story){

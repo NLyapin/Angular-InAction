@@ -3,7 +3,7 @@ var myModule = angular.module('Angello', [
     'Angello.Common',
     'Angello.Storyboard',
     "Angello.Login"
-])
+]);
 myModule.factory('AngelloHelper', function () {
     var buildIndex = function (source, property) {
         var tempArray = [];
@@ -15,13 +15,13 @@ myModule.factory('AngelloHelper', function () {
     return {
         buildIndex: buildIndex
     }
-})
+});
 myModule.factory('AngelloModel', function () {
-})
+});
 myModule.factory('AngelloCtrl', function () {
-})
+});
 myModule.factory('story', function () {
-})
+});
 myModule.service('AngelloModel', function () {
     var service = this,
         stories = [
@@ -48,7 +48,7 @@ myModule.service('AngelloModel', function () {
 
         return stories;
     }
-})
+});
 
 myModule.controller('MainCtrl', function (AngelloModel) {
     var main = this;
@@ -67,14 +67,15 @@ myModule.controller('MainCtrl', function (AngelloModel) {
             }
         )
     }
-})
+});
 myModule.directive('story', function () {
     return {
         scope: true,
         replace: true,
         template: '<div><h4>{{story.title}}</h4><p>{{story.description}}</p>'
     }
-})
+});
+
 
 myModule.config(function($routeProvider, $httpProvider, $provide){
 $routeProvider.when('/login',{
@@ -86,4 +87,11 @@ $routeProvider.when('/login',{
         templateUrl: 'src/storyboard/tmpl/storyboard.html'
     })
     .otherwise({redirectTo: '/'})
-})
+});
+
+myModule.value('STORY_TYPES', [
+    {name: 'Feature'},
+    {name: 'Enhancement'},
+    {name: 'Bug'},
+    {name: 'Spike'}
+]);
