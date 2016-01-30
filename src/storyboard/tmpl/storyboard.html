@@ -4,12 +4,13 @@
             <ul class="list" ng-repeat="status in ::storyboard.statuses">
                 <h3 class="status">{{::status.name}}</h3>
                 <hr/>
-                <li class="story"
+                <li userstory
+                    class="story"
                     ng-repeat="story in storyboard.stories | filter: {status:status.name}"
                     ng-click="storyboard.setCurrentStory(story)">
                     <article>
                         <div>
-                            <button type="button" class="close" ng-click="storyboard.deleteStory(story.id)">×</button>
+                            <button type="button" class="close" ng-click="userStory.deleteStory(story.id)">×</button>
                             <p class="title">{{story.title}}</p>
                         </div>
                         <div class="type-bar {{story.type}}"></div>

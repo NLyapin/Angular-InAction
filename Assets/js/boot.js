@@ -16,6 +16,8 @@ head.load(
     { file: 'src/app/services/UtilService.js' },
     { file: 'src/app/services/LoadingService.js' },
     { file: 'src/app/models/StoriesModel.js' },
+    { file: 'src/user/User.js' },
+    { file: 'src/user/directives/UserStoryDirective.js' },
     { file: 'src/login/Login.js' },
     { file: 'src/login/controllers/LoginController.js' },
     { file: 'src/storyboard/Storyboard.js' },

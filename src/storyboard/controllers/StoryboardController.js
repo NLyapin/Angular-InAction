@@ -1,4 +1,4 @@
-angular.module('Angello.Storyboard').controller('StoryboardCtrl', function(StoriesModel, STORY_TYPES){
+angular.module('Angello.Storyboard').controller('StoryboardCtrl', function($scope, StoriesModel, STORY_TYPES){
     var storyboard = this;
     storyboard.currentStory = null;
     storyboard.editedStory = {};
@@ -6,6 +6,7 @@ angular.module('Angello.Storyboard').controller('StoryboardCtrl', function(Stori
 
     storyboard.setCurrentStory = function(story){
         storyboard.currentStory = story;
+        storyboard.currentStoryId = story.id;
         storyboard.editedStory = angular.copy(storyboard.currentStory);
     }
     storyboard.updateStory = function(){
@@ -46,35 +47,40 @@ angular.module('Angello.Storyboard').controller('StoryboardCtrl', function(Stori
             });
     };
 
-    storyboard.deleteStory = function(storyId) {
-        storyboard.stories.remove(function(story){
-            return story.id == storyId;
-        });
-        storyboard.resetForm();
-    }
+    //storyboard.deleteStory = function(storyId) {
+    //    storyboard.stories.remove(function(story){
+    //        return story.id == storyId;
+    //    });
+    //    storyboard.resetForm();
+    //}
 
-    /*storyboard.stories = getStories();/*[
-        {
-            "assignee" : "1",
-            "criteria": "It tests!",
-            "description" : "This is a test",
-            "id" : "1",
-            "reporter" : "2",
-            "status" : "To Do",
-            "title" : "First Story",
-            "type" : "Spike"
-        },
-        {
-            "assignee" : "2",
-            "criteria": "It works!",
-            "description" : "testing something",
-            "id" : "2",
-            "reporter" : "1",
-            "status" : "In Progress",
-            "title" : "Second Story",
-            "type" : "Enhancement"
-        }
-    ];*/
+    storyboard.createStory = function () {
+        StoriesModel.create(storyboard.editedStory)
+            .then(function (result) {
+                storyboard.getStories();
+                storyboard.resetForm();
+                //$log.debug('RESULT', result);
+            }, function (reason) {
+                //$log.debug('ERROR', reason);
+            });
+    };
+
+    storyboard.updateStory = function () {
+        var fields = ['title', 'description', 'criteria', 'status', 'type', 'reporter', 'assignee'];
+
+        fields.forEach(function (field) {
+            storyboard.currentStory[field] = storyboard.editedStory[field]
+        });
+
+        StoriesModel.update(storyboard.currentStoryId, storyboard.editedStory)
+            .then(function (result) {
+                storyboard.getStories();
+                storyboard.resetForm();
+                //$log.debug('RESULT', result);
+            }, function (reason) {
+                //$log.debug('REASON', reason);
+            });
+    };
     storyboard.statuses = [
         {name: 'To Do'},
         {name: 'In Progress'},
@@ -84,5 +90,10 @@ angular.module('Angello.Storyboard').controller('StoryboardCtrl', function(Stori
     ];
 
     storyboard.getStories();
+
+    $scope.$on('storyDeleted', function () {
+        storyboard.getStories();
+        storyboard.resetForm();
+    });
 })
 
