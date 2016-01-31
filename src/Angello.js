@@ -1,6 +1,7 @@
 var myModule = angular.module('Angello', [
     "ngRoute",
     'Angello.Common',
+    'Angello.Dashboard',
     'Angello.Storyboard',
     'Angello.User',
     "Angello.Login"
@@ -90,7 +91,6 @@ myModule.directive('story', function () {
     }
 });
 
-
 myModule.config(function($routeProvider, $httpProvider, $provide){
 
     $httpProvider.interceptors.push('loadingInterceptor');
@@ -102,6 +102,11 @@ myModule.config(function($routeProvider, $httpProvider, $provide){
         .when('/',{
             templateUrl: 'src/storyboard/tmpl/storyboard.html'
         })
+        .when('/dashboard',{
+            templateUrl: 'src/dashboard/tmpl/dashboard.html',
+            controller: 'DashboardCtrl',
+            controllerAs: 'dashboard'
+        })
         .otherwise({redirectTo: '/'})
 });
 
@@ -110,4 +115,12 @@ myModule.value('STORY_TYPES', [
     {name: 'Enhancement'},
     {name: 'Bug'},
     {name: 'Spike'}
+]);
+
+myModule.value('STORY_STATUSES', [
+    {name: 'To Do'},
+    {name: 'In Progress'},
+    {name: 'Code Review'},
+    {name: 'QA Review'},
+    {name: 'Verified'}
 ]);

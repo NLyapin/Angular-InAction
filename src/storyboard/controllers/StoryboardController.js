@@ -81,6 +81,51 @@ angular.module('Angello.Storyboard').controller('StoryboardCtrl', function($scop
                 //$log.debug('REASON', reason);
             });
     };
+    storyboard.isEmptyStatus = function (status) {
+        var empty = true;
+        if (storyboard.stories) {
+            storyboard.stories.forEach(function (story) {
+                if (story.status === status) empty = false;
+            });
+        }
+
+        return empty;
+    };
+
+    storyboard.insertAdjacent = function (target, story, insertBefore) {
+        if (target === story) return;
+
+        var fromIdx = storyboard.stories.indexOf(story);
+        var toIdx = storyboard.stories.indexOf(target);
+
+        if (!insertBefore) toIdx++;
+
+        if (fromIdx >= 0 && toIdx >= 0) {
+            storyboard.stories.splice(fromIdx, 1);
+
+            if (toIdx >= fromIdx) toIdx--;
+
+            storyboard.stories.splice(toIdx, 0, story);
+
+            story.status = target.status;
+        }
+    };
+
+    storyboard.finalizeDrop = function (story) {
+        StoriesModel.update(story.id, story)
+            .then(function (result) {
+                console.log('RESULT', result);
+                //$log.debug('RESULT', result);
+            }, function (reason) {
+                //$log.debug('REASON', reason);
+                console.log('REASON', reason);
+            });
+    };
+
+    storyboard.changeStatus = function (story, status) {
+        story.status = status.name;
+    };
+
     storyboard.statuses = [
         {name: 'To Do'},
         {name: 'In Progress'},

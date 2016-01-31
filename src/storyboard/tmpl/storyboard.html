@@ -7,7 +7,13 @@
                 <li userstory
                     class="story"
                     ng-repeat="story in storyboard.stories | filter: {status:status.name}"
+                    drag-container="story" mime-type="application/x-angello-status"
+                    drop-container="" accepts="['application/x-angello-status']"
                     ng-click="storyboard.setCurrentStory(story)">
+
+                    <div drop-target="top" on-drag-enter="storyboard.insertAdjacent(story, data, true)" on-drop="storyboard.finalizeDrop(data)"></div>
+                    <div drop-target="bottom" on-drag-enter="storyboard.insertAdjacent(story, data, false)" on-drop="storyboard.finalizeDrop(data)"></div>
+
                     <article>
                         <div>
                             <button type="button" class="close" ng-click="userStory.deleteStory(story.id)">×</button>
@@ -19,6 +25,13 @@
                         </div>
                     </article>
                 </li>
+                <div
+                        class="emptystatus"
+                        drop-container="" accepts="['application/x-angello-status']"
+                        on-drop="storyboard.finalizeDrop(data)"
+                        on-drag-enter="storyboard.changeStatus(data, status)"
+                        ng-if="storyboard.isEmptyStatus(status)">
+                </div>
             </ul>
         </div>
     </div>
