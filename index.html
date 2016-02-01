@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="Assets/css/animations.css">
     
 </head>
-<body ng-controller="MainCtrl as main">
+<body ng-controller="MainCtrl as main" ng-class="{loading:loadingView}">
 
 <div class="navbar navbar-fixed-top navbar-default">
     <div class="navbar-header pull-left">
@@ -36,7 +36,7 @@
             <span class="glyphicon glyphicon-signal"></span>
         </a>
         <a class="btn btn-default" ng-click="main.logout()">
-            <span class="glyphicon glyphicon-logout-icon"></span>
+            <span class="glyphicon glyphicon-log-out"></span>
         </a>
     </div>
 </div>

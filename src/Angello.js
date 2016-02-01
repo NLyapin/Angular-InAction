@@ -5,7 +5,9 @@ var myModule = angular.module('Angello', [
     'Angello.Storyboard',
     'Angello.User',
     'ngAnimate',
-    "Angello.Login"
+    'ngMessages',
+    'Angello.Login',
+    'auth0'
 ]);
 myModule.factory('AngelloHelper', function () {
     var buildIndex = function (source, property) {
@@ -91,6 +93,14 @@ myModule.directive('story', function () {
         template: '<div><h4>{{story.title}}</h4><p>{{story.description}}</p>'
     }
 });
+myModule.run(function($rootScope, LoadingService){
+    $rootScope.$on('$rootChangeStart', function(e, curr, prev){
+        LoadingService.setLoading(true);
+    });
+    $rootScope.$on('$rootChangeSuccess', function(e, curr, prev){
+        LoadingService.setLoading(false);
+    });
+});
 
 myModule.config(function($routeProvider, $httpProvider, $provide){
 
@@ -102,6 +112,27 @@ myModule.config(function($routeProvider, $httpProvider, $provide){
         })
         .when('/',{
             templateUrl: 'src/storyboard/tmpl/storyboard.html'
+        })
+        .when('/users',{
+            templateUrl: 'src/user/tmpl/users.html',
+            controller: 'UsersCtrl',
+            controllerAs: 'users'
+        })
+        .when('/users/:userId',{
+            templateUrl: 'src/user/tmpl/user.html',
+            controller: 'UserCtrl',
+            controllerAs: 'myUser',
+            resolve: {
+                user: function ($route, $routeParams, UsersModel) {
+                    var userId = $route.current.params['userId']
+                        ? $route.current.params['userId']
+                        : $routeParams['userId'];
+                    return UsersModel.fetch(userId);
+                },
+                stories: function ($rootScope, StoriesModel) {
+                    return StoriesModel.all();
+                }
+            }
         })
         .when('/dashboard',{
             templateUrl: 'src/dashboard/tmpl/dashboard.html',

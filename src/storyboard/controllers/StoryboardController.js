@@ -1,8 +1,19 @@
-angular.module('Angello.Storyboard').controller('StoryboardCtrl', function($scope, StoriesModel, STORY_TYPES){
+angular.module('Angello.Storyboard').controller('StoryboardCtrl', function($scope, StoriesModel,
+                                                                           UsersModel, STORY_TYPES, $log){
     var storyboard = this;
     storyboard.currentStory = null;
     storyboard.editedStory = {};
     storyboard.types = STORY_TYPES;
+
+    storyboard.users = {};
+
+    UsersModel.all()
+        .then(function (result) {
+            storyboard.users = (result !== null && result.length > 0) ? result : [{name: 'Please create a user'}];
+            $log.debug('RESULT', result);
+        }, function (reason) {
+            $log.debug('REASON', reason);
+        });
 
     storyboard.detailsVisible = true;
 

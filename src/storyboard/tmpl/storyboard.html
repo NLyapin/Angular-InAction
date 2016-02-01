@@ -26,13 +26,13 @@
                         </div>
                     </article>
                 </li>
-                <div
-                        class="emptystatus"
-                        drop-container="" accepts="['application/x-angello-status']"
-                        on-drop="storyboard.finalizeDrop(data)"
-                        on-drag-enter="storyboard.changeStatus(data, status)"
-                        ng-if="storyboard.isEmptyStatus(status)">
-                </div>
+                <!--<div-->
+                        <!--class="emptystatus"-->
+                        <!--drop-container="" accepts="['application/x-angello-status']"-->
+                        <!--on-drop="storyboard.finalizeDrop(data)"-->
+                        <!--on-drag-enter="storyboard.changeStatus(data, status)"-->
+                        <!--ng-if="storyboard.isEmptyStatus(status)">-->
+                <!--</div>-->
             </ul>
         </div>
     </div>
@@ -83,25 +83,25 @@
                         </div>
                     </div>
                 </div>
-                <!--<div class="form-group">-->
-                    <!--<label class="control-label" for="inputType">*Type</label>-->
+                <div class="form-group">
+                    <label class="control-label" for="inputType">*Type</label>
 
-                    <!--<div class="controls">-->
-                        <!--<select id="inputType" name="inputType" class="form-control" ng-model="storyboard.editedStory.type" ng-options="t.name as t.name for t in storyboard.types" ng-required="true">-->
-                            <!--<option value="">Select Type</option>-->
-                        <!--</select>-->
+                    <div class="controls">
+                        <select id="inputType" name="inputType" class="form-control" ng-model="storyboard.editedStory.type" ng-options="t.name as t.name for t in storyboard.types" ng-required="true">
+                            <option value="">Select Type</option>
+                        </select>
 
-                        <!--<div-->
-                                <!--ng-class="{'alert alert-error alert-warning': storyboard.detailsForm.inputType.$invalid}"-->
-                                <!--ng-messages="storyboard.detailsForm.inputType.$error"-->
-                                <!--ng-if="storyboard.showMessages('inputType')">-->
+                        <div
+                                ng-class="{'alert alert-error alert-warning': storyboard.detailsForm.inputType.$invalid}"
+                                ng-messages="storyboard.detailsForm.inputType.$error"
+                                ng-if="storyboard.showMessages('inputType')">
 
-                            <!--<div ng-message="required">-->
-                                <!--<small>Required!</small>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
+                            <div ng-message="required">
+                                <small>Required!</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label class="control-label" for="inputDescription">Description</label>
 
@@ -120,44 +120,44 @@
                         </textarea>
                     </div>
                 </div>
-                <!--<div class="form-group">-->
-                    <!--<label class="control-label">*Reporter</label>-->
+                <div class="form-group">
+                    <label class="control-label">*Reporter</label>
 
-                    <!--<div class="controls">-->
-                        <!--<select ng-model="storyboard.editedStory.reporter" class="form-control"-->
-                                <!--name="inputReporter" ng-required="true" ng-options="user.id as user.name for user in storyboard.users">-->
-                            <!--<option value="">Please select...</option>-->
-                        <!--</select>-->
-                        <!--<div ng-class="{'alert alert-error alert-warning': storyboard.detailsForm.inputReporter.$invalid}"-->
-                             <!--ng-messages="storyboard.detailsForm.inputReporter.$error"-->
-                             <!--ng-if="storyboard.showMessages('inputReporter')">-->
+                    <div class="controls">
+                        <select ng-model="storyboard.editedStory.reporter" class="form-control"
+                                name="inputReporter" ng-required="true" ng-options="user.id as user.name for user in storyboard.users">
+                            <option value="">Please select...</option>
+                        </select>
+                        <div ng-class="{'alert alert-error alert-warning': storyboard.detailsForm.inputReporter.$invalid}"
+                             ng-messages="storyboard.detailsForm.inputReporter.$error"
+                             ng-if="storyboard.showMessages('inputReporter')">
 
-                            <!--<div ng-message="required">-->
-                                <!--<small>Required!</small>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="form-group">-->
-                    <!--<label class="control-label">*Assignee</label>-->
+                            <div ng-message="required">
+                                <small>Required!</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">*Assignee</label>
 
-                    <!--<div class="controls">-->
-                        <!--<select ng-model="storyboard.editedStory.assignee" class="form-control"-->
-                                <!--name="inputAssignee" ng-required="true" ng-options="user.id as user.name for user in storyboard.users">-->
-                            <!--<option value="">Please select...</option>-->
-                        <!--</select>-->
+                    <div class="controls">
+                        <select ng-model="storyboard.editedStory.assignee" class="form-control"
+                                name="inputAssignee" ng-required="true" ng-options="user.id as user.name for user in storyboard.users">
+                            <option value="">Please select...</option>
+                        </select>
 
-                        <!--<div-->
-                                <!--ng-class="{'alert alert-error alert-warning': storyboard.detailsForm.inputAssignee.$invalid}"-->
-                                <!--ng-messages="storyboard.detailsForm.inputAssignee.$error"-->
-                                <!--ng-if="storyboard.showMessages('inputAssignee')">-->
+                        <div
+                                ng-class="{'alert alert-error alert-warning': storyboard.detailsForm.inputAssignee.$invalid}"
+                                ng-messages="storyboard.detailsForm.inputAssignee.$error"
+                                ng-if="storyboard.showMessages('inputAssignee')">
 
-                            <!--<div ng-message="required">-->
-                                <!--<small>Required!</small>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
+                            <div ng-message="required">
+                                <small>Required!</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <hr>
                 <div ng-if="storyboard.currentStory">
                     <button class="btn btn-default" ng-click="storyboard.updateCancel()">
