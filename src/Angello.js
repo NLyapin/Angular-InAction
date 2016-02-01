@@ -4,6 +4,7 @@ var myModule = angular.module('Angello', [
     'Angello.Dashboard',
     'Angello.Storyboard',
     'Angello.User',
+    'ngAnimate',
     "Angello.Login"
 ]);
 myModule.factory('AngelloHelper', function () {

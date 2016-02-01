@@ -4,6 +4,8 @@ angular.module('Angello.Storyboard').controller('StoryboardCtrl', function($scop
     storyboard.editedStory = {};
     storyboard.types = STORY_TYPES;
 
+    storyboard.detailsVisible = true;
+
     storyboard.setCurrentStory = function(story){
         storyboard.currentStory = story;
         storyboard.currentStoryId = story.id;
@@ -46,6 +48,10 @@ angular.module('Angello.Storyboard').controller('StoryboardCtrl', function($scop
                 condole.log('REASON', reason);
             });
     };
+
+    storyboard.setDetailsVisible = function (visible) {
+        storyboard.detailsVisible = visible;
+    }
 
     //storyboard.deleteStory = function(storyId) {
     //    storyboard.stories.remove(function(story){
